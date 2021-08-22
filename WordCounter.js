@@ -41,7 +41,7 @@ const WordCounter = () => {
                         {wordsList && filteredWordsList && filteredWordsList.map((word, id) =>
                             <tr key={id}>
                                 <td className="max-w-0 w-3/4 truncate p-2">{word}</td>
-                                <td className="whitespace-nowrap p-2">{`${wordsList.filter(totalWords => word === totalWords).length.toLocaleString()} (${((wordsList.filter(totalWords => word === totalWords).length) / ((wordsList.length)) * 100).toFixed(2)}%)` || ""}</td>
+                                <td className="whitespace-nowrap p-2">{`${wordsList.filter(totalWords => word.toLowerCase() === totalWords.toLowerCase()).length.toLocaleString()} (${((wordsList.filter(totalWords => word.toLowerCase() === totalWords.toLowerCase()).length) / ((wordsList.length)) * 100).toFixed(2)}%)` || ""}</td>
                             </tr>)}
                     </tbody>
                 </table>}
