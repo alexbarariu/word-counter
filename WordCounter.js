@@ -19,8 +19,9 @@ const WordCounter = () => {
     }, [text]);
 
     useEffect(() => {
-        // Removes duplicate words
-        setFilteredWordsList([...new Set(wordsList)]);
+         // Removes duplicate words
+        const res = wordsList && wordsList.map(word => typeof word === "string" ? word.toLowerCase() : word);
+        setFilteredWordsList([...new Set(res)]);
     }, [wordsList])
 
     return (
