@@ -25,9 +25,10 @@ const WordCounter = () => {
     }, [wordsList])
 
     return (
-        <div className="grid grid-cols-10 m-4 mb-16 animate-fade-in-up sm:mt-16">
+        <div className="grid grid-cols-10 gap-3 m-4 mb-16 mt-12 animate-fade-in-up sm:mt-16">
+            <p className="text-gray-800 text-4xl col-span-9 sm:col-start-2">Word Counter</p>
             <textarea className="border border-gray-600 rounded-md p-2 col-span-10 sm:col-start-2 sm:col-end-6" style={{ marginTop: 0, minHeight: "200px" }} value={text} onChange={e => setText(e.target.value)} />
-            <div className="col-span-4 mt-2 font-semibold sm:col-span-1 sm:-mr-1 sm:pl-4 sm:pt-0">Word count: {wordCount.toLocaleString()}<br />Character count: {text.length.toLocaleString()}</div>
+            <div className="col-span-11 font-semibold sm:col-span-1 sm:-mr-1 sm:pl-4">Word count: {wordCount.toLocaleString()}<br />Character count: {text.length.toLocaleString()}</div>
             {wordsList && filteredWordsList &&
                 <table className="animate-fade-in border border-gray-600 divide-y divide-gray-600 col-span-6 mt-2 mr-4 w-full sm:col-start-7 sm:col-end-10 sm:mt-0 sm:ml-2 sm:mr-10">
                     <thead>
