@@ -9,7 +9,7 @@ const WordCounter = () => {
 
     const countWords = (text) => {
         // Removes all non-word characters & counts words
-        let list = text && (text.trim().replaceAll(/[\W_]/g, " ").split(" ")).filter(val => val !== "");
+        let list = text && (text.trim().replaceAll(/[\n\W_]/g, " ").split(" ")).filter(val => val !== "");
         setWordsList(list);
         setWordCount(list.length);
     }
