@@ -14,13 +14,13 @@ const WordCounter = () => {
         let newWordsUsed = [];
         textArray?.map((word) => (
             // If word is found, increment usage, otherwise push to newWordsUsed
-            newWordsUsed.find(w => w.word === word)
-                ? newWordsUsed.find(w => w.word === word).usage++
+            newWordsUsed.find(w => w.word.toLowerCase() === word.toLowerCase())
+                ? newWordsUsed.find(w => w.word.toLowerCase() === word.toLowerCase()).usage++
                 : newWordsUsed.push({ word, usage: 1 })
         ));
         // Sort words list for table display, and sum the count
         setWordsUsed(_.orderBy(newWordsUsed, "usage", "desc"));
-        setWordCount(_.sumBy(wordsUsed, "usage"));
+        setWordCount(textArray.length);
     }
 
     useEffect(() => {
@@ -50,7 +50,7 @@ const WordCounter = () => {
                             {wordsUsed?.map((word, id) => {
                                 return (
                                     <tr key={id}>
-                                        <td className="max-w-0 w-3/4 truncate p-2">{word.word}</td>
+                                        <td className="max-w-0 w-3/4 truncate p-2">{word.word.toLowerCase()}</td>
                                         <td className="whitespace-nowrap p-2">{`${word.usage} (${((word.usage / wordCount) * 100).toFixed(2)}%)`}</td>
                                     </tr>
                                 )
