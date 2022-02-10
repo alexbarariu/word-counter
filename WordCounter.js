@@ -57,7 +57,7 @@ const WordCounter = () => {
                     <table className="animate-fade-in border border-gray-600 divide-y divide-gray-600 col-span-6 mt-2 mr-4 w-full sm:col-start-7 sm:col-end-10 sm:mt-0 sm:ml-2 sm:mr-10">
                         <thead>
                             <tr>
-                                <th>Word</th>
+                                <th>Word{selectionRange[1] - selectionRange[0] !== text.length ? " (Selected only)" : ""}</th>
                                 <th>Usage</th>
                             </tr>
                         </thead>
