@@ -9,6 +9,7 @@ const WordCounter = () => {
     const [wordsUsed, setWordsUsed] = useState([]);
     const [wordCount, setWordCount] = useState(0);
     const [charCount, setCharCount] = useState(0);
+    const [processing, setProcessing] = useState(false);
 
     const countWords = (text) => {
         // Split words and remove any non-word characters, then filter blank values out
@@ -27,7 +28,9 @@ const WordCounter = () => {
     }
 
     useEffect(() => {
+        setProcessing(true);
         countWords(text);
+        setProcessing(true);
         // eslint-disable-next-line
     }, [text, selectionRange]);
 
@@ -50,14 +53,15 @@ const WordCounter = () => {
                     value={text}
                     // If document is visible don't update range - user may switch to other window while doc is still visible
                     onBlur={() => { if (document.hidden || document.msHidden || document.webkitHidden || document.mozHidden) setRange(0, 0) }}
-                    onSelect={e => setRange(e.target.selectionStart, e.target.selectionEnd)} onChange={e => setText(e.target.value)}
+                    onSelect={e => setRange(e.target.selectionStart, e.target.selectionEnd)}
+                    onChange={e => setText(e.target.value)}
                 />
                 <div className="col-span-11 font-semibold sm:col-span-1 sm:-mr-1 sm:pl-4">Word count: {wordCount?.toLocaleString()}<br />Character count: {charCount?.toLocaleString()}</div>
                 {(wordsUsed?.length &&
                     <table className="animate-fade-in border border-gray-600 divide-y divide-gray-600 col-span-6 mt-2 mr-4 w-full sm:col-start-7 sm:col-end-10 sm:mt-0 sm:ml-2 sm:mr-10">
                         <thead>
                             <tr>
-                                <th>Word{selectionRange[1] - selectionRange[0] !== text.length ? " (Selected only)" : ""}</th>
+                                <th>Word{selectionRange[1] - selectionRange[0] !== text.length && !processing ? " (Selected only)" : ""}</th>
                                 <th>Usage</th>
                             </tr>
                         </thead>
